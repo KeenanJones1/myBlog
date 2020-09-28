@@ -1,25 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-const path = require('path');
-var cors = require("cors");
-var mongoose = require('mongoose');
-require('dotenv/config');
-
-var app = express();
-
-app.use(cors());
-app.use(express.json());
+const mongoose = require('mongoose');
+// Allow use of mongoose
 
 
 
+const mongoDB = 'mongodb://127.0.0.1/my_database';
+// defines a database that mogoonse will connect with 
+
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+// connecting mongoose to mongodb
+// mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
-app.get("*", (req, res) => {
- res.sendFile(path.join(__dirname + "/client/home.html"));
-}); 
+const db = mongoose.connection;
+// saving the connected db reference to an variable 
 
-
-// mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true })
-
-module.exports = app;
-app.listen(8000, () => {console.log("Hello buddy")})
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// Allows notifications if errors occure with mongodb

@@ -1,10 +1,22 @@
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Home  from './components/Home.js'
 
 
-const App = () => (
-  <BrowserRouter>
-  </BrowserRouter>
-)
+
+
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={Home}/>
+      </Switch>
+    </BrowserRouter>
+  );
+}
+
+
 
 export default App;
