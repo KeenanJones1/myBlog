@@ -23,9 +23,7 @@ app.get("*", (req, res) => {
 // const db = mongoose.connection;
 // mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
 
-mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true }, () => {
- console.log("Hey DB")
-})
+mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true })
 
 
 
