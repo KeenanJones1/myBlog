@@ -5,13 +5,23 @@ import {Link} from 'react-router-dom'
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [featuredBlog, setFeatureBlog] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect( () => {
    const FetchData = async () => {
    try{
     const res = await axios.get(`${process.env.REACT_APP_API_URL}/posts`);
     setFeatureBlog(res.data[0]);
-    console.log(res.data)
+
+    for( let i = 0; i < res.data.length; i++){
+     if( res.data[i].tags.length > 1){
+      for( let j = 0; j < res.data[i].tags.length; j++){
+       setCategories(categories.push(res.data[i].tags[j]))
+      }
+     }else{
+      setCategories(categories.push(res.data[i].tags[0]))
+     }
+    }
    }
    catch(err){
 
@@ -31,7 +41,6 @@ const Blog = () => {
    catch(err){
    }
   }
-
    fetchBlogs();
   }, []);
 
@@ -45,22 +54,30 @@ const Blog = () => {
 
   }
 
+  const getCategories = () => {
+
+  }
+
+  const renderCategories = () => {
+   
+  }
+
+
  return (
   <div className="container mt-3">
+   {/* This needs to recieve db.bios.find( { "tag": "ruby" } ) when directed to the route */}
    <div className="nav-scroller py-1 mb-2">
     <nav className="nav d-flex justify-content-between">
-      <Link className="p-2 text-muted" to='/category/world'>World</Link>
-      <Link className="p-2 text-muted" to='/category/world'>U.S.</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Technology</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Design</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Culture</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Business</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Politics</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Opinion</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Science</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Health</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Style</Link>
-      <Link className="p-2 text-muted" to='/category/world'>Travel</Link>
+      <Link className="p-2 text-muted" to='/category/ruby'>Ruby</Link>
+      <Link className="p-2 text-muted" to='/category/javascript'>JavaScript</Link>
+      <Link className="p-2 text-muted" to='/category/react'>React</Link>
+      <Link className="p-2 text-muted" to='/category/backend'>Backend</Link>
+      <Link className="p-2 text-muted" to='/category/frontend'>Frontend</Link>
+      <Link className="p-2 text-muted" to='/category/design'>Design</Link>
+      <Link className="p-2 text-muted" to='/category/culture'>Culture</Link>
+      <Link className="p-2 text-muted" to='/category/business'>Business</Link>
+      <Link className="p-2 text-muted" to='/category/politiics'>Politics</Link>
+      <Link className="p-2 text-muted" to='/category/health'>Health</Link>
     </nav>
    </div>
    <div className="jumbotron p-4 p-md-5 text-white rounded bg-dark">

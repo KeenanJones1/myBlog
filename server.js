@@ -15,21 +15,14 @@ const postsRoute = require('./routes/posts');
 app.use('/posts', postsRoute);
 
 
+
 app.get("*", (req, res) => {
  res.send("Hello");
 }); 
 
-// const mongoDB = 'mongodb://127.0.0.1/my_database';
-// const db = mongoose.connection;
-// mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
+
 
 mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true })
-
-
-
-
-
-
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
