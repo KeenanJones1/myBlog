@@ -6,11 +6,10 @@ const Schema = mongoose.Schema;
 
 const PostModelSchema = new Schema({
  title: {type: String, required: true},
- createdAt: {type: Date, required: true},
+ createdAt: {type: Date},
  tags: {type: [String]},
- // Tutorial body is the html
  body: {type: String, required: true},
- excerpt: {type: String, required: true}
+ excerpt: {type: String}
 })
 
 
