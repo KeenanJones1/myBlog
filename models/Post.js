@@ -6,10 +6,10 @@ const Schema = mongoose.Schema;
 
 const PostModelSchema = new Schema({
  title: {type: String, required: true},
- createdAt: {type: Date},
+ createdAt: {type: Date, required: true},
  tags: {type: [String]},
  body: {type: String, required: true},
- excerpt: {type: String}
+ excerpt: {type: String, required: true}
 })
 
 

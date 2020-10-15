@@ -28,7 +28,9 @@ router.post('/', async (req, res) => {
   const post = new Post({
     title: req.body.title, 
     body: req.body.body,
-    tags: req.body.tags
+    tags: req.body.tags,
+    createdAt: req.body.createdAt,
+    excerpt: req.body.excerpt
   })
   try {
     const savedPost = await post.save();

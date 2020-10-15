@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
 import Post from './Post'
 
 const Blog = () => {
@@ -15,7 +14,6 @@ const Blog = () => {
     setFeatureBlog(res.data[0]);
     for( let i = 0; i < res.data.length; i++){
      if( res.data[i].tags.length > 1){
-      //  time complexity can be optimized
       for( let j = 0; j < res.data[i].tags.length; j++){
        setCategories(categories.push(res.data[i].tags[j]))
       }
@@ -58,9 +56,6 @@ const Blog = () => {
      return <Post key={post._id} post={post}/>
     })
   }
-
- 
-
 
 
  return (

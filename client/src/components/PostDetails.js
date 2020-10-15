@@ -29,17 +29,7 @@ const renderHTML = () => {
  
  
 const renderPost = () => {
-
-
-
  return (<div dangerouslySetInnerHTML={renderHTML()}>
-  {/* <h1>{postDetails.title}</h1>
-
-  <h6>{tags.join(", ")}</h6>
-
-  <p>{postDetails.body}</p> */}
-
-
  </div>)
 }
 
