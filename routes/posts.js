@@ -62,4 +62,16 @@ router.delete('/:postId', async (req, res) => {
 
 
 
+// Getting posts based on tags 
+router.get('/category/:categoryName', async (req, res) => {
+  try{
+    const posts = await Post.find({tags: req.params.categoryName});
+    res.json(posts);
+  }
+  catch(err){ res.json({ message: err })} 
+})
+
+
+
+
 module.exports = router;

@@ -59,7 +59,7 @@ const Blog = () => {
 
 
  return (
-   <div>
+   <div className= "container">
      {renderBlogs()}
    </div>
  );
