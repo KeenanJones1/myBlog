@@ -23,13 +23,13 @@ const handleClick = (id) => {
 const {post} = props
 
  return (
-  <button onClick = {() => handleClick(post._id)} className="col p-4 d-flex flex-column position-static">
-    <strong className="d-inline-block mb-2 text-primary">{renderTags(post.tags)}</strong>
-    <h3 className="mb-0">{post.title}</h3>
-    <div className="mb-1 text-muted">{post.createdAt ? renderDate(post.createdAt) : null}</div>
-    <p className="card-text mb-auto">{ !post.excerpt ? null : post.excerpt}</p>
-    <Link onClick={() => handleClick(post._id)} >Continue reading</Link>
-  </button>
+<div class="col p-4 d-flex flex-column position-static">
+  <strong class="d-inline-block mb-2 text-success">{renderTags(post.tags)}</strong>
+  <h3 class="mb-0">{post.title}</h3>
+  <div class="mb-1 text-muted">{post.createdAt ? renderDate(post.createdAt) : null}</div>
+  <p class="mb-auto">{ !post.excerpt ? null : post.excerpt}</p>
+  <Link onClick={() => handleClick(post._id)} >Continue reading</Link>
+</div>
  )
 }
 
