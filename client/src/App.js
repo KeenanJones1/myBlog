@@ -4,7 +4,6 @@ import Layout from './hocs/Layout'
 import Blog from './components/Blog'
 import PostDetails from './components/PostDetails'
 import Category from './components/Category'
-import Home from './components/Home'
 
 
 function App() {
@@ -12,8 +11,7 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/blog" component={Blog}/>
+          <Route exact path="/" component={Blog}/>
           <Route exact path="/posts/:id" component={PostDetails}/>
           <Route exact path="/category/:id" component={Category}/>
         </Switch>
