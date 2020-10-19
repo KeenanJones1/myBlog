@@ -11,8 +11,14 @@ const Blog = () => {
    const FetchData = async () => {
    try{
     const res = await axios.get(`${process.env.REACT_APP_API_URL}/posts`);
-    
-    setBlogs(res.data);
+    const incomingBlogs = res.data
+
+    let sorted_posts = incomingBlogs.sort((a,b) => {
+      return new Date(a.createdAt).getTime() - 
+          new Date(b.createdAt).getTime()
+    }).reverse();
+
+    setBlogs(sorted_posts);
     setFeaturedBlog(res.data[res.data.length -1])
    }
    catch(err){
@@ -31,15 +37,7 @@ const Blog = () => {
  
 
   const renderBlogs = () => {
-  
-var sorted_posts = blogs.sort((a,b) => {
-  return new Date(a.createdAt).getTime() - 
-      new Date(b.createdAt).getTime()
-}).reverse();
-
-
-
-     return sorted_posts.map(post => {
+     return blogs.map(post => {
      return <Post key={post._id} post={post}/>
     })
   }
@@ -49,15 +47,15 @@ var sorted_posts = blogs.sort((a,b) => {
  return (
    <div className="container">
 {/* Page Header */}
-  <header className="masthead" style={{backgroundImage: `url(${Background})`}}
->
+    <header className="masthead" style={{backgroundImage: `url(${Background})`}}
+  >
       <div class="overlay"></div>
         <div class="container">
           <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
               <div class="site-heading">
                 <h1>Welcome to myBlog</h1>
-                <span class="subheading">I'm a full stack developer from Chicago, IL. This is my blog where I write about useful knowledge I'd like to share with the World.</span>
+                <span class="subheading">I'm a full stack developer from Chicago. This is my blog, I write about useful knowledge I'd like to share with the World.</span>
               </div>
             </div>
           </div>
@@ -70,7 +68,6 @@ var sorted_posts = blogs.sort((a,b) => {
         </div>
       </div>
     </div>
-   
    </div>
  );
 }
